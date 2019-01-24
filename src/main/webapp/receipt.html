@@ -1,0 +1,94 @@
+<!-- This page will be redirected from any url if you are not logged in -->
+<!DOCTYPE html>
+<html>
+<head>
+ <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+<!--   <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css" rel="stylesheet" type="text/css"> -->
+<!--  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> -->
+  <meta charset="UTF-8">
+  
+  <!-- <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script> -->
+<script>
+$(document).ready(function(){
+	var searchParams = new URLSearchParams(location.search);
+	var name = searchParams.get("name");
+	var ic = searchParams.get("ic");
+	var visit = searchParams.get("visit");
+	var total = searchParams.get("total");
+	var start = searchParams.get("start");
+	var end = searchParams.get("end");
+	var dialysis = searchParams.get("dialysis");
+	var med = searchParams.get("med");
+	var d = new Date();
+	$("#tdname").text("茲證明  " + name);
+	$("#td_patientic").text("先生/小姐，身分證號" + ic + "，");
+	$("#today_date").text("日期：" + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate());
+	$('#rangedate').text("於" + start + "至" + end + "，診療" + med + "次" + "衛材：" +  dialysis);
+	$('#total').text("在本院所就診醫療費用為新台幣" + total + "元整");
+});
+</script>
+
+<h1>
+</h1>
+
+<!-- <div class="ui middle aligned center aligned grid">
+<h2>
+  <div class="content" id="contentdiv">
+        安禾系統登入
+  </div>
+</h2>
+</div> -->
+
+<table style="border:2px black solid;">
+<tbody><tr>
+<td style="text-align: center; vertical-align:middle;">
+<strong style="font-size:18px;">收</strong>
+</td>
+<td style="text-align: center; vertical-align:middle;">
+<strong style="font-size:18px;">據</strong>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 30px;" id="tdname">
+茲證明</td>
+<td  id="td_patientic">先生，身分證號，</td>
+</tr>
+<tr>
+<td style="padding-left: 30px;" id="rangedate"> 於至，診療次</td>
+<td></td>
+</tr>
+<tr>
+<td style="padding-left: 30px;" id="total"> 在本院所就診醫療費用為新台幣0元整</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>此據台照 </td>
+</tr>
+<tr>
+<td></td>
+<td> 院所名稱：安禾聯合診所</td>
+</tr>
+<tr>
+<td></td>
+<td> 負責醫師：吳宏基</td>
+</tr>
+<tr>
+<td></td>
+<td style="padding-right: 30px;"> 院所地址：台北市松山區民權東路3段178號3樓</td>
+</tr>
+<tr>
+<td style="padding-left: 30px; color: red;">多加妥善保存，遺失不補</td>
+<td id="today_date">日期：2018-09-01</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

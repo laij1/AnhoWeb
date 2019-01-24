@@ -1,0 +1,101 @@
+<!-- This page will be redirected from any url if you are not logged in -->
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  <meta charset="UTF-8">
+<script>
+$(document).ready(function(){
+	var searchParams = new URLSearchParams(location.search);
+	var name = searchParams.get("name");
+	var ic = searchParams.get("ic");
+	var visit = searchParams.get("visit");
+	var total = searchParams.get("total");
+	var start = searchParams.get("start");
+	var end = searchParams.get("end");
+	var dialysis = searchParams.get("dialysis");
+	var med = searchParams.get("med");
+	var d = new Date();
+	$("#tdname").text("姓名: " + name);
+	$("#td_patientic").text("身分證字號：" + ic);
+	$('#rangedate').text("費用期間：" + start + "至" + end);
+	$('#medicineFee').text("NT$" + med + "元整");
+	$('#dialysisFee').text("NT$" + dialysis + "元整");
+	$('#total').text("NT$" + total + "元整");
+	 $('#today_date').text("日期：" + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate());
+});
+</script>
+</head>
+<body> 
+<table style=" border:2px black solid;">
+<tbody>
+<tr></tr>
+<tr>
+<td colspan="2" style="text-align: center;">
+<strong style="font-size:28px; text-decoration: underline;">收據</strong>
+</td>
+</tr>
+<tr>
+<td id ="tdname" style="padding-left: 30px;"> 姓名: </td>
+</tr>
+<tr>
+<td id="td_patientic" style="padding-left: 30px;"> 身分證字號:</td>
+</tr>
+<tr>
+<td id ="rangedate" style="padding-left: 30px;"> 費用期間: </td>
+</tr>
+<tr>
+<td style="padding-left: 180px; text-align: center; ">
+	<table style=" border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid black; padding-left: 30px; padding-right: 30px;">自付費用項目</th>
+      <th style="border: 1px solid black;padding-left: 30px; padding-right: 30px;">金額</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid black; padding-left: 30px; padding-right: 30px;">藥品費</td>
+      <td id="medicineFee" style="border: 1px solid black; padding-left: 30px; padding-right: 30px;"></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black;">衛材費</td>
+      <td id="dialysisFee" style="border: 1px solid black;"></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black;">總計</td>
+      <td id="total" style="border: 1px solid black;"></td> 
+    </tr>
+  </tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 30px;"> 此據</td>
+</tr>
+<tr>
+<td style="padding-left: 30px;"> 醫療院所名稱：安禾聯合診所</td>
+</tr>
+<tr>
+<td style="padding-left: 30px;">醫事機構代碼：3501013040</td>
+</tr>
+<tr>
+<td style="padding-left: 30px;"> 負責人：吳宏基</td>
+</tr>
+<tr>
+<td style="padding-left: 30px;"> 電話：02-2713-7889</td>
+</tr>
+<tr>
+<td style="padding-left: 30px;"> 地址：台北市松山區民權東路3段178號3樓</td>
+</tr>
+<tr>
+<td id="today_date" style="padding-left: 30px;">日期：</td>
+<td style="padding-right: 30px; color: red;">多加妥善保存，遺失不補</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+</body>
+</html>

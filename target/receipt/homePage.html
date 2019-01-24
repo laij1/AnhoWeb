@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script>
+$(document).ready( function() {
+    $("#print_receipt").on("click", function() {
+        $("#content").load("search.html");
+    });
+    $("#monthly_invoice").on("click", function() {
+        $("#content").load("monthlyInvoice.html");
+    });
+    $("#receipt_history").on("click", function() {
+        $("#content").load("receiptHistory.html");
+    });
+    $("#content").load("search.html");
+});
+</script>
+</head>
+<body>
+<div class="ui inverted menu">
+  <a class="item" id="print_receipt">列印收據</a>
+  <a class="item" id="monthly_invoice">月結紀錄</a>
+  <a class="item" id="receipt_history">收據紀錄</a>
+ <div class="right menu">
+    <a class="ui item active">
+      <form id="logout_form" method="post" action="api/logout">
+    	<input class="ui button" type="submit" value="登出">
+	  </form>
+    </a>
+  </div>
+</div>
+
+<div id="content">
+</div>
+
+</body>
+</html>

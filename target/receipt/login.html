@@ -1,0 +1,58 @@
+<!-- This page will be redirected from any url if you are not logged in -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css" rel="stylesheet" type="text/css">
+  <meta charset="UTF-8">
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+
+<h1>
+</h1>
+
+<div class="ui middle aligned center aligned grid">
+<h2>
+  <div class="content">
+        安禾系統登入
+  </div>
+</h2>
+</div>
+
+<div class="ui middle aligned center aligned grid"> 
+
+ 
+<!-- Set the method to POST to avoid username/password showing on URL
+     Disable the default action because our JS function will handle it. -->
+     
+    
+	<form class="ui large form" id="login_form" method="post" action="/login.js">
+		<div class="ui stacked segment">
+	   		<div class="field">
+	   		<div class="ui left icon input">
+            	<i class="user icon"></i>
+	    		<input type="text" placeholder="Enter Username" name="username">
+	   		</div>
+	   		</div>
+	   		<div class="field">
+	    	<div class="ui left icon input">
+            	<i class="lock icon"></i>
+	    		<input type="password" placeholder="Enter Password" name="password">
+	   		</div>
+	   		</div>
+        </div>
+    <input class="ui button" type="submit" value="登入">
+   	<div id="login_error_message"></div>
+	</form>
+
+	
+</div>
+<!-- include jQuery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- include our own JS file -->
+<script src="./login.js"></script>
+
+
+</body>
+</html>

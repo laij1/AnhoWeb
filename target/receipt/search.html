@@ -1,0 +1,204 @@
+<html>
+<head>
+<link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+<!--   <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css" rel="stylesheet" type="text/css"> -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  
+  <!-- <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script> -->
+  <script type="text/javascript">
+        function noBack()
+         {
+             window.history.forward()
+         }
+        noBack();
+        window.onload = noBack;
+        window.onpageshow = function(evt) { if (evt.persisted) noBack() }
+        window.onunload = function() { void (0) }
+    </script>
+  
+  <script type="text/javascript">
+    var visit = {};
+    var total = 0;
+    var dialysis = 0;
+    var med = 0;
+    var lastDate;
+    $(document).ready(function() {
+    	$('#tablediv').hide();
+    	$('#receiptdiv').hide();
+    	
+    	$('#receiptbutton').click(function(){
+    		visit = {};
+    		total = 0;
+    		dialysis = 0;
+    		med = 0;
+    		$('#excelDataTable').find('tr').each(function () {
+    	        var row = $(this);
+    	        if (row.find('input[type="checkbox"]').is(':checked')){
+    	        	 if(!row.find("td:eq(2)").text()=="") {
+    	        		visit["'" + row.find("td:eq(2)").text() +"'"] = true;
+    	        		lastDate = row.find("td:eq(2)").text();
+    	        	}
+    	        	if(row.find("td:eq(6)").text() == "衛材"){
+    	        		dialysis += Number(row.find("td:eq(5)").text());
+    	        	} else {
+    	        		med += Number(row.find("td:eq(5)").text());
+    	        	}
+    	        	total += Number(row.find("td:eq(5)").text());
+    	        	console.log(row.find("td:eq(5)").text());
+    	        
+    	        }
+    	    });
+    	
+    		 var ic = $("#patient_ic").val();
+    		 var name =$("#patientname").val();
+    		 var oldurl ='./receipt.html?name='+ name + '&ic=' + ic 
+    				 + '&start=' + $("#startdate").val() + '&end=' + lastDate 
+    				 + '&visit=' + Object.keys(visit).length + '&total=' + total + '&dialysis=' + dialysis + '&med=' + med;
+    		/* window.location.href = oldurl; */
+    	    window.open(oldurl); 
+    	});
+    	
+    	Object.size = function(obj) {
+    	    var size = 0, key;
+    	    for (key in obj) {
+    	        if (obj.hasOwnProperty(key)) size++;
+    	    }
+    	    return size;
+    	};
+
+    	
+    	$('#rangestart').calendar({
+    		  type: 'date',
+    		  formatter: {
+  		        date: function (date, settings) {
+  		            if (!date) return '';
+  		            var day = date.getDate() + '';
+  		            if (day.length < 2) {
+  		                day = '0' + day;
+  		            }
+  		            var month = (date.getMonth() + 1) + '';
+  		            if (month.length < 2) {
+  		                month = '0' + month;
+  		            }
+  		            var year = date.getFullYear();
+  		            return year + '-' + month + '-' + day;
+  		            }
+  		        },
+    		  endCalendar: $('#rangeend')
+    		});
+    	
+    		$('#rangeend').calendar({
+    		  type: 'date',
+    		  formatter: {
+    		        date: function (date, settings) {
+    		            if (!date) return '';
+    		            var day = date.getDate() + '';
+    		            if (day.length < 2) {
+    		                day = '0' + day;
+    		            }
+    		            var month = (date.getMonth() + 1) + '';
+    		            if (month.length < 2) {
+    		                month = '0' + month;
+    		            }
+    		            var year = date.getFullYear();
+    		            return year + '-' + month + '-' + day;
+    		            }
+    		        },
+    		  startCalendar: $('#rangestart')
+    		});	
+    });
+    
+   	
+  </script>
+</head> 
+<body>
+
+<h1>
+</h1>
+<!-- <h2 class="ui right floated header">
+	<form class="ui large form" id="logout_form" method="post" action="api/logout">
+    	<input class="ui button" type="submit" value="登出">
+	</form>
+</h2> -->
+<!-- <div class="ui clearing segment">
+  <h3 class="ui right floated header">
+    Go Forward
+  </h3>
+  <h3 class="ui left floated header">
+    Go Back
+  </h3>
+</div> -->
+<!-- <div class="ui stackable menu">
+  <a class="item">Features</a>
+  <a class="item">Testimonials</a>
+  <a class="item">
+  <form id="logout_form" method="post" action="api/logout">
+    	<input class="ui button" type="submit" value="登出">
+	</form></a>
+</div> -->
+
+<h3 class="ui center aligned icon header">
+  <i class="circular users icon"></i>
+  搜尋病患
+</h3>
+<h4></h4>
+<div class="ui middle aligned center aligned grid" > 
+   <form class="ui large form" id="search_patient" method="post" action="/search.js">
+		<div class="ui stacked segment">
+	   		<div class="field">
+	   		<div class="ui left icon input">
+            	<i class="user icon"></i>
+	    		<input type="text" placeholder="輸入病患" name="patientname" id="patientname">
+	   		</div>
+	   		</div>
+		      <div class="field">
+		        <label>開始日期</label>
+		        <div class="ui calendar" id="rangestart">
+		          <div class="ui input left icon">
+		            <i class="calendar icon"></i>
+		            <input type="text" placeholder="開始日期" name="startdate" id ="startdate">
+		          </div>
+		        </div>
+		      </div>
+		      <div class="field">
+		        <label>結束日期</label>
+		        <div class="ui calendar" id="rangeend">
+		          <div class="ui input left icon">
+		            <i class="calendar icon"></i>
+		            <input type="text" placeholder="結束日期" name="enddate" id ="enddate">
+		          </div>
+		        </div>
+		      </div>
+		    
+        </div>
+    <input class="ui button" type="submit" value="搜尋紀錄">
+   	<div id="search_error_message"></div>
+	</form>
+	
+	
+	<div class="ui row segment" id="tablediv">
+	<div style="width:800px; overflow-x: scroll;">
+	<table class="ui selectable celled table" id="excelDataTable">
+	<tbody id="tbodyid">
+	</tbody>
+	</table>
+	</div>
+	</div>
+	<div class="ui row segment" id="receiptdiv">  
+	<div class="ui labeled input">
+    <div class="ui teal label">
+    身分證字號
+ 	</div >
+	<input type="text" id="patient_ic">
+	</div>
+	 <button class="ui button" type="button" id="receiptbutton" >產生收據</button>
+	</div>		
+</div>	
+<!-- include our own JS file -->
+<script src="./search.js"></script>
+</body>
+</html>
